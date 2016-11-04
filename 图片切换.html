@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换</title>
+</head>
+<style>
+	body{text-align: center;}
+	#content{
+		width: 400px; height: 400px;  margin:auto;margin-top: 10px;border: 10px solid gray;
+		position: relative;
+	}
+	#p1{
+		height: 25px; background: black; color: white; text-align: center; margin-top: 0px;
+		position: absolute;width: 400px;
+	}
+	#p2{
+		height: 25px; background: black; color: white; text-align: center; margin-top: 375px;
+		position: absolute; width: 400px;
+	}
+	a{
+		width: 40px; height: 40px; border: 1px solid black;display: block;background: gray; 
+		text-decoration: none; text-align: center; margin-top: 180px; position: absolute; 
+		line-height: 40px;font-size: 30px;
+	}
+	a:hover{color: yellow;}
+	#next{
+		left: 360px;
+	}
+	#img{
+		width: 400px; height: 400px;	}
+</style>
+<body>
+	<div id="header">
+		<input type="button" value="循环切换">
+		<input type="button" value="顺序切换">
+	</div>
+		<p id="p0">图片可从最后一张跳转到第一张循环切换</p>
+	<div id="content">
+		<p id="p1">数量计算中...</p>
+		<a  id="prev" href="#"><</a>
+		<a  id="next" href="#">></a>
+		<p id="p2">图片文字加载中...</p>
+		<img id="img">
+	</div>
+</body>
+<script>
+	var oinput0 = document.getElementsByTagName('input')[0];
+	var oinput1 = document.getElementsByTagName('input')[1];
+	var op1 = document.getElementById('p1');
+	var op2 = document.getElementById('p2');
+	var ocontent = document.getElementById('content');
+	var oprev = document.getElementById('prev');
+	var onext = document.getElementById('next');
+	var oimg = document.getElementById('img');
+	var arrurl = ['1.jpg','2.jpg','3.jpg','4.jpg'];
+	var arr = ['图片1','图片2','图片3','图片4'];
+	var num = 0;
+	function a(){
+	oimg.src = arrurl[num];
+	op1.innerHTML = num+1+'/'+arrurl.length;
+	op2.innerHTML = arr[num];
+};
+	a();
+	oinput0.onclick = function(){
+	onext.onclick = function(){
+	if(num<arr.length-1){
+		num++;
+		a();
+	}else{
+		num=0;
+		a();
+	}
+	}
+	oprev.onclick = function(){
+	if(num>0){
+		num--;
+		a();
+	}else{
+		num=3;
+		a();
+	}
+	}
+};
+	oinput1.onclick = function(){
+	onext.onclick = function(){
+	if(num<arr.length-1){
+			num++;
+			a();
+		}else{
+			alert('还想看吗？拿钱！！！');
+		}
+	}
+	oprev.onclick = function(){
+	if(num>0){
+			num--;
+			a();
+		}else{
+			alert('其实往前面还有图片，想看？拿钱！！！');
+		}
+	}
+};
+</script>
+</html>
